@@ -1,4 +1,7 @@
-import { TURSO_DB_AUTH_TOKEN, TURSO_DB_URL } from '$env/static/private';
+import {
+	TURSO_DB_AUTH_TOKEN,
+	TURSO_DB_URL,
+} from '$env/static/private';
 import { createClient, type Client } from '@libsql/client/http';
 
 export const turso_client = (): Client => {
@@ -16,6 +19,6 @@ export const turso_client = (): Client => {
 
 	return createClient({
 		url: TURSO_DB_URL as string,
-		authToken: TURSO_DB_AUTH_TOKEN as string
+		authToken: TURSO_DB_AUTH_TOKEN as string,
 	});
 };
