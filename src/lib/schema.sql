@@ -29,3 +29,14 @@ CREATE TABLE
     slug TEXT NOT NULL,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
   );
+
+CREATE TABLE
+  session_geolocation (
+    session_id INTEGER PRIMARY KEY,
+    city TEXT,
+    region TEXT,
+    country TEXT,
+    location TEXT,
+    timezone TEXT,
+    FOREIGN KEY (session_id) REFERENCES user_session (id)
+  );

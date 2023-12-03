@@ -1,4 +1,4 @@
-import { get_aggregated_analytics } from '$lib/turso/aggregated-analytics.js';
+import { get_aggregated_analytics } from '$lib/turso/aggregated-analytics';
 import { json, type Config } from '@sveltejs/kit';
 
 export const config: Config = {

@@ -10,7 +10,11 @@ export const update_page_visit = async (
 		slug === '/' ? '/' : slug.split('?')[0].replace(/\/$/, '');
 
 	// Exclude specific paths or API calls
-	const excluded_paths = ['/session-end', '/aggregated-analytics'];
+	const excluded_paths = [
+		'/session-end',
+		'/aggregated-analytics',
+		'/aggregated-locations',
+	];
 	if (
 		excluded_paths.some((path) => normalised_slug.startsWith(path))
 	) {

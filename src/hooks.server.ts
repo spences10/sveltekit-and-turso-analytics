@@ -1,9 +1,22 @@
+import { dev } from '$app/environment';
+import { IPINFO_TOKEN } from '$env/static/private';
 import { turso_client, update_page_visit } from '$lib/turso';
 import type { Config, Handle } from '@sveltejs/kit';
 import { sequence } from '@sveltejs/kit/hooks';
 
 export const config: Config = {
 	runtime: 'nodejs18.x',
+};
+
+// Add a function to fetch geolocation data
+const fetch_geo_location = async (ip_address: string) => {
+	const response = await fetch(
+		`https://ipinfo.io/${ip_address}?token=${IPINFO_TOKEN}`,
+	);
+	if (!response.ok) {
+		throw new Error('Failed to fetch geolocation data');
+	}
+	return response.json();
 };
 
 export const user_session: Handle = async ({ event, resolve }) => {
@@ -50,6 +63,35 @@ export const user_session: Handle = async ({ event, resolve }) => {
 			if (typeof session_id === 'undefined') {
 				throw new Error('Failed to create a new session.');
 			}
+		}
+
+		// Fetch and store geolocation data
+		if (!dev && request_ip) {
+			const geo_data = await fetch_geo_location(request_ip);
+			const insert_geo_data_sql = `
+				INSERT INTO
+					session_geolocation (
+						session_id,
+						city,
+						region,
+						country,
+						location,
+						timezone
+					)
+				VALUES
+					(?, ?, ?, ?, ?, ?)
+				`;
+			await client.execute({
+				sql: insert_geo_data_sql,
+				args: [
+					session_id,
+					geo_data.city,
+					geo_data.region,
+					geo_data.country,
+					geo_data.loc,
+					geo_data.timezone,
+				],
+			});
 		}
 
 		// Set session cookie
