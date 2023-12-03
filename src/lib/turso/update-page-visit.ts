@@ -10,7 +10,7 @@ export const update_page_visit = async (
 		slug === '/' ? '/' : slug.split('?')[0].replace(/\/$/, '');
 
 	// Exclude specific paths or API calls
-	const excluded_paths = ['/session-end'];
+	const excluded_paths = ['/session-end', '/aggregated-analytics'];
 	if (
 		excluded_paths.some((path) => normalised_slug.startsWith(path))
 	) {
@@ -28,10 +28,10 @@ export const update_page_visit = async (
 
 	// Check for unique visit within the last 24 hours
 	let check_unique_visit_sql = `
-        SELECT id FROM page_visits 
-        WHERE slug = ? 
-        AND session_id = ? 
-        AND created_at > datetime('now', '-24 hours')`;
+		SELECT id FROM page_visits 
+		WHERE slug = ? 
+		AND session_id = ? 
+		AND created_at > datetime('now', '-24 hours')`;
 	const unique_visit_result = await client.execute({
 		sql: check_unique_visit_sql,
 		args: [normalised_slug, session_id],
