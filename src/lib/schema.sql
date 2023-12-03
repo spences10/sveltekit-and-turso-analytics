@@ -26,5 +26,6 @@ CREATE TABLE
   page_visits (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     session_id INTEGER NOT NULL,
-    slug TEXT NOT NULL
+    slug TEXT NOT NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
   );
