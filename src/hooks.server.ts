@@ -1,6 +1,4 @@
-import { calculate_metrics } from '$lib/server';
-import { update_page_visit } from '$lib/server/update-page-visit';
-import { turso_client } from '$lib/turso';
+import { turso_client, update_page_visit } from '$lib/turso';
 import type { Handle } from '@sveltejs/kit';
 import { sequence } from '@sveltejs/kit/hooks';
 
@@ -43,12 +41,24 @@ export const user_session: Handle = async ({ event, resolve }) => {
 				args: [request_ip, user_agent, referrer],
 			});
 			session_id = insert_result.lastInsertRowid;
-
+			
 			// Handle potential undefined value for lastInsertRowid
 			if (typeof session_id === 'undefined') {
 				throw new Error('Failed to create a new session.');
 			}
 		}
+
+		// Set session cookie
+		const session_data = {
+			session_id: session_id?.toString(), // Convert BigInt to string
+			user_agent,
+			referrer,
+		};
+		event.cookies.set('session-data', JSON.stringify(session_data), {
+			path: '/',
+			httpOnly: false, // Set to false to access it via JavaScript
+			maxAge: 3600, // Expires in 1 hour
+		});
 
 		console.log('IP Address from Client Request: ', request_ip);
 
@@ -57,9 +67,6 @@ export const user_session: Handle = async ({ event, resolve }) => {
 	} catch (error) {
 		console.error('Error in user_session handle: ', error);
 	}
-
-	// TODO: remove this add to schedule
-	calculate_metrics();
 
 	return resolve(event);
 };
