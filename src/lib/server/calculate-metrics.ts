@@ -41,4 +41,13 @@ export const calculate_metrics = async () => {
     )
   `;
 	await client.execute(bounce_rate_sql);
+
+	// Cleanup old session data
+	let cleanup_sql = `
+    DELETE FROM user_session 
+    WHERE 
+      (session_end IS NOT NULL AND session_end < datetime('now', '-1 hour')) OR
+      (session_end IS NULL AND session_start < datetime('now', '-24 hours'))
+  `;
+	await client.execute(cleanup_sql);
 };
