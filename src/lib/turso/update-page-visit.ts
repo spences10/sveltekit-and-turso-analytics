@@ -1,9 +1,9 @@
-import type { Value } from '@libsql/client/http';
+import type { InValue, Value } from '@libsql/client/http';
 import { turso_client } from '.';
 
 export const update_page_visit = async (
 	slug: string,
-	session_id: Value,
+	session_id: InValue,
 ) => {
 	const client = turso_client();
 	const normalised_slug =
