@@ -1,6 +1,6 @@
 import { dev } from '$app/environment';
 import { IPINFO_TOKEN } from '$env/static/private';
-import type { InValue, Value } from '@libsql/client/http';
+import type { InValue } from '@libsql/client/http';
 import { turso_client } from './client';
 
 async function fetch_geo_location(ip_address: string) {
@@ -18,19 +18,40 @@ export async function handle_geolocation_data(
 	session_id: InValue,
 ) {
 	if (!dev && request_ip) {
-		const geo_data = await fetch_geo_location(request_ip);
 		const client = turso_client();
-		const insert_geo_data_sql = `INSERT INTO session_geolocation (session_id, city, region, country, location, timezone) VALUES (?, ?, ?, ?, ?, ?)`;
-		await client.execute({
-			sql: insert_geo_data_sql,
-			args: [
-				session_id,
-				geo_data.city,
-				geo_data.region,
-				geo_data.country,
-				geo_data.loc,
-				geo_data.timezone,
-			],
-		});
+		const geo_data = await fetch_geo_location(request_ip);
+
+		let sql = `SELECT session_id FROM session_geolocation WHERE session_id = ?`;
+		let result = await client.execute({ sql, args: [session_id] });
+
+		if (result.rows && result.rows.length > 0) {
+			// Update existing geolocation data
+			sql = `UPDATE session_geolocation SET city = ?, region = ?, country = ?, location = ?, timezone = ? WHERE session_id = ?`;
+			await client.execute({
+				sql,
+				args: [
+					geo_data.city,
+					geo_data.region,
+					geo_data.country,
+					geo_data.loc,
+					geo_data.timezone,
+					session_id,
+				],
+			});
+		} else {
+			// Insert new geolocation data
+			sql = `INSERT INTO session_geolocation (session_id, city, region, country, location, timezone) VALUES (?, ?, ?, ?, ?, ?)`;
+			await client.execute({
+				sql,
+				args: [
+					session_id,
+					geo_data.city,
+					geo_data.region,
+					geo_data.country,
+					geo_data.loc,
+					geo_data.timezone,
+				],
+			});
+		}
 	}
 }
