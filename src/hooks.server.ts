@@ -1,6 +1,10 @@
 import { turso_client, update_page_visit } from '$lib/turso';
-import type { Handle } from '@sveltejs/kit';
+import type { Config, Handle } from '@sveltejs/kit';
 import { sequence } from '@sveltejs/kit/hooks';
+
+export const config: Config = {
+	runtime: 'nodejs18.x',
+};
 
 export const user_session: Handle = async ({ event, resolve }) => {
 	try {
@@ -41,7 +45,7 @@ export const user_session: Handle = async ({ event, resolve }) => {
 				args: [request_ip, user_agent, referrer],
 			});
 			session_id = insert_result.lastInsertRowid;
-			
+
 			// Handle potential undefined value for lastInsertRowid
 			if (typeof session_id === 'undefined') {
 				throw new Error('Failed to create a new session.');
