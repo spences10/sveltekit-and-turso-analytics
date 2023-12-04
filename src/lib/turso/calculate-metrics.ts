@@ -14,7 +14,7 @@ export const calculate_metrics = async () => {
         FROM page_visits
         WHERE page_visits.slug = page_analytics.slug
       )
-    )
+    );
   `;
 	await client.execute(avg_duration_sql);
 
@@ -38,7 +38,7 @@ export const calculate_metrics = async () => {
         FROM page_visits
         WHERE page_visits.slug = page_analytics.slug
       )
-    )
+    );
   `;
 	await client.execute(bounce_rate_sql);
 
@@ -47,7 +47,7 @@ export const calculate_metrics = async () => {
     DELETE FROM user_session 
     WHERE 
       (session_end IS NOT NULL AND session_end < datetime('now', '-1 hour')) OR
-      (session_end IS NULL AND session_start < datetime('now', '-24 hours'))
+      (session_end IS NULL AND session_start < datetime('now', '-24 hours'));
   `;
 	await client.execute(cleanup_sql);
 };

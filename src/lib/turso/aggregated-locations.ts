@@ -1,7 +1,12 @@
 import { turso_client } from './client';
 
 export const get_aggregated_locations = async (
-	aggregation_type: 'city' | 'region' | 'country',
+	aggregation_type:
+		| 'city'
+		| 'region'
+		| 'country'
+		| 'timezone'
+		| 'location',
 ) => {
 	const client = turso_client();
 
@@ -9,6 +14,8 @@ export const get_aggregated_locations = async (
 		city: 'city',
 		region: 'region',
 		country: 'country',
+		timezone: 'timezone',
+		location: 'location',
 	};
 
 	const group_by_clause =
