@@ -32,11 +32,11 @@ CREATE TABLE
 
 CREATE TABLE
   session_geolocation (
-    session_id INTEGER PRIMARY KEY,
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    session_id INTEGER,
     city TEXT,
     region TEXT,
     country TEXT,
     location TEXT,
-    timezone TEXT,
-    FOREIGN KEY (session_id) REFERENCES user_session (id)
+    timezone TEXT
   );
