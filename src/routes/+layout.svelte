@@ -1,8 +1,9 @@
 <script lang="ts">
+	import { Header } from '$lib/components';
 	import '../app.pcss';
 </script>
 
-<a href="/about">About</a>
-<a href="/">Home</a>
-
-<slot />
+<div class="flex flex-col min-h-screen">
+	<Header />
+	<slot />
+</div>
