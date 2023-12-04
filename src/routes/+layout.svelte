@@ -1,5 +1,5 @@
 <script lang="ts">
-
+	import '../app.pcss';
 </script>
 
 <a href="/about">About</a>
