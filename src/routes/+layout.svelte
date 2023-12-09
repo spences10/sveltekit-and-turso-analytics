@@ -1,8 +1,8 @@
 <script lang="ts">
 
-</script>
+import "../app.postcss";</script>
 
 <a href="/about">About</a>
 <a href="/">Home</a>
 
-<slot />
+<slot></slot>
