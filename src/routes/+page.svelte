@@ -6,18 +6,15 @@
 	];
 </script>
 
-<div class="flex flex-col items-center space-y-4 text-center mb-20">
-	<div class="space-y-2 mb-7">
-		<h1
-			class="mb-4 text-3xl font-bold tracking-wide sm:text-4xl md:text-5xl lg:text-6xl/none"
-		>
-			Turso &amp; SvelteKit Analytics Experiment
-		</h1>
-		<p class="mx-auto md:text-xl text-base-content/70">
-			An exploration on what analytics could be recorded with Turso
-			and SvelteKit.
-		</p>
-	</div>
+<div class="prose prose-xl prose-h1:text-accent text-center">
+	<h1>Turso &amp; SvelteKit Analytics Experiment</h1>
+	<p class="text-base-content/70">
+		An exploration on what analytics could be recorded with Turso
+		and SvelteKit.
+	</p>
+	<p class="text-base-content/70">
+		Take a look around at the various anonymised data that is recorded.
+	</p>
 </div>
 
 <div class="mt-12">
