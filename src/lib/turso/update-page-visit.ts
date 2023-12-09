@@ -1,4 +1,4 @@
-import type { InValue, Value } from '@libsql/client/http';
+import type { InValue } from '@libsql/client/http';
 import { turso_client } from '.';
 
 export const update_page_visit = async (
@@ -53,22 +53,37 @@ export const update_page_visit = async (
 	}
 
 	// Update the page_analytics table
-	let sql = 'SELECT id FROM page_analytics WHERE slug = ?';
+	let sql =
+		'SELECT id, date FROM page_analytics WHERE slug = ? ORDER BY date DESC LIMIT 1';
 	const result = await client.execute({
 		sql,
 		args: [normalised_slug],
 	});
 
-	if (result.rows && result.rows.length > 0) {
-		// Update existing record
-		sql = `UPDATE page_analytics SET pageviews = pageviews + 1, visits = visits + ${
-			is_new_visit ? 1 : 0
-		}, uniques = uniques + ${is_unique_visit ? 1 : 0} WHERE slug = ?`;
-		await client.execute({ sql, args: [normalised_slug] });
+	const current_date = new Date().toISOString().split('T')[0];
+
+	if (
+		result.rows &&
+		result.rows.length > 0 &&
+		result.rows[0].date === current_date
+	) {
+		// Update existing record for today
+		sql = `UPDATE page_analytics SET 
+        pageviews = pageviews + 1, 
+        visits = visits + ${is_new_visit ? 1 : 0}, 
+        uniques = uniques + ${is_unique_visit ? 1 : 0} 
+        WHERE slug = ? AND date = ?`;
+		await client.execute({
+			sql,
+			args: [normalised_slug, current_date],
+		});
 	} else {
-		// Insert new record for the slug if it doesn't exist
+		// Insert new record for the slug for today
 		sql =
-			'INSERT INTO page_analytics (slug, pageviews, visits, uniques) VALUES (?, 1, 1, 1)';
-		await client.execute({ sql, args: [normalised_slug] });
+			'INSERT INTO page_analytics (date, slug, pageviews, visits, uniques) VALUES (?, ?, 1, 1, 1)';
+		await client.execute({
+			sql,
+			args: [current_date, normalised_slug],
+		});
 	}
 };
