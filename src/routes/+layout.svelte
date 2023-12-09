@@ -1,8 +1,14 @@
 <script lang="ts">
+	import { Footer, Nav } from '$lib/components';
+	import '../app.postcss';
+</script>
 
-import "../app.postcss";</script>
+<Nav />
 
-<a href="/about">About</a>
-<a href="/">Home</a>
+<div class="flex flex-col min-h-screen overflow-x-hidden">
+	<main class="container max-w-3xl mx-auto px-4 flex-grow">
+		<slot />
+	</main>
 
-<slot></slot>
+	<Footer />
+</div>
