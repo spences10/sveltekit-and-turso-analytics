@@ -3,8 +3,13 @@
 	"singleQuote": true,
 	"printWidth": 70,
 	"proseWrap": "always",
-	"plugins": ["prettier-plugin-svelte"],
+	"plugins": ["prettier-plugin-tailwindcss"],
 	"overrides": [
-		{ "files": "*.svelte", "options": { "parser": "svelte" } }
+		{
+			"files": "*.svelte",
+			"options": {
+				"parser": "svelte"
+			}
+		}
 	]
 }
