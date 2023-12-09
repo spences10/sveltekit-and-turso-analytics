@@ -8,7 +8,7 @@
 </script>
 
 <header
-	class="sticky top-0 z-10 backdrop-filter bg-base-100/50 backdrop-blur-xl px-4 lg:px-6 h-14 flex items-center"
+	class="sticky top-0 z-10 backdrop-filter bg-base-100/50 backdrop-blur-xl px-4 lg:px-6 h-14 flex items-center mb-20"
 >
 	<a class="flex items-center justify-center" href="/">
 		<svg
