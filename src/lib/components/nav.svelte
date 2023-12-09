@@ -2,8 +2,9 @@
 	let links = [
 		{ href: `/`, title: `Home` },
 		{ href: `/about`, title: `About` },
-		{ href: `/services`, title: `Services` },
-		{ href: `/contact`, title: `Contact` },
+		{ href: `/page-views`, title: `Page Views` },
+		{ href: `/locations`, title: `Locations` },
+		{ href: `/sessions`, title: `Session Data` },
 	];
 </script>
 
