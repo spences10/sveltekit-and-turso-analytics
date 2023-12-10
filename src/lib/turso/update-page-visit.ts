@@ -15,6 +15,7 @@ export const update_page_visit = async (
 		'/aggregated-analytics',
 		'/aggregated-locations',
 		'/aggregated-sessions',
+		'/robots.txt',
 	];
 	if (
 		excluded_paths.some((path) => normalised_slug.startsWith(path))
