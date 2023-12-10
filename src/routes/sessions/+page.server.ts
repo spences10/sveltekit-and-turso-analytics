@@ -1,3 +1,7 @@
+import type { Config } from '@sveltejs/kit';
+
+export const config: Config = { runtime: 'nodejs18.x' };
+
 export const load = async ({ fetch }) => {
 	let session_data = {};
 	try {

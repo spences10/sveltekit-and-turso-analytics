@@ -5,9 +5,7 @@ import {
 	type RequestHandler,
 } from '@sveltejs/kit';
 
-export const config: Config = {
-	runtime: 'nodejs18.x',
-};
+export const config: Config = { runtime: 'nodejs18.x' };
 
 export const POST: RequestHandler = async ({ request }) => {
 	const data = await request.json();
