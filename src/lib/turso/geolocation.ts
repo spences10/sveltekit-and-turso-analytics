@@ -1,6 +1,6 @@
 import { dev } from '$app/environment';
 import { IPINFO_TOKEN } from '$env/static/private';
-import type { InValue } from '@libsql/client';
+import type { InValue } from '@libsql/client/web';
 import { turso_client } from './client';
 
 async function fetch_geo_location(ip_address: string) {

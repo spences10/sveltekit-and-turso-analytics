@@ -2,7 +2,7 @@ import {
 	TURSO_DB_AUTH_TOKEN,
 	TURSO_DB_URL,
 } from '$env/static/private';
-import { createClient, type Client } from '@libsql/client';
+import { createClient, type Client } from '@libsql/client/web';
 
 let client_instance: Client | null = null;
 
