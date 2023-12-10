@@ -3,10 +3,16 @@
 	import '../app.postcss';
 </script>
 
+<svelte:head>
+	<title>Turso & SvelteKit Analytics</title>
+	<meta name="description" content="Analytics" />
+	<meta name="robots" content="noindex" />
+</svelte:head>
+
 <Nav />
 
-<div class="flex flex-col min-h-screen overflow-x-hidden">
-	<main class="container max-w-3xl mx-auto px-4 flex-grow">
+<div class="flex min-h-screen flex-col overflow-x-hidden">
+	<main class="container mx-auto max-w-3xl flex-grow px-4">
 		<slot />
 	</main>
 

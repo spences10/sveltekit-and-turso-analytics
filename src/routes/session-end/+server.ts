@@ -17,11 +17,11 @@ export const POST: RequestHandler = async ({ request }) => {
 
 	// Update the user_session table to mark the session as ended
 	const sql = `
-    UPDATE user_session
-    SET session_end = CURRENT_TIMESTAMP,
-        session_duration = strftime('%s', CURRENT_TIMESTAMP) - strftime('%s', session_start)
-    WHERE id = ?
-  `;
+		UPDATE user_session
+		SET session_end = CURRENT_TIMESTAMP,
+			session_duration = strftime('%s', CURRENT_TIMESTAMP) - strftime('%s', session_start)
+		WHERE id = ?
+	`;
 	await client.execute({
 		sql,
 		args: [session_id],
