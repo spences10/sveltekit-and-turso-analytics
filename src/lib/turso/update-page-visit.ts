@@ -1,4 +1,4 @@
-import type { InValue } from '@libsql/client/http';
+import type { InValue } from '@libsql/client';
 import { turso_client } from '.';
 
 export const update_page_visit = async (

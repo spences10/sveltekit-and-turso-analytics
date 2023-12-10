@@ -6,9 +6,7 @@ import {
 import type { Config, Handle } from '@sveltejs/kit';
 import { sequence } from '@sveltejs/kit/hooks';
 
-export const config: Config = {
-	runtime: 'nodejs18.x',
-};
+export const config: Config = { runtime: 'nodejs18.x' };
 
 export const user_session: Handle = async ({ event, resolve }) => {
 	try {

@@ -1,4 +1,4 @@
-import type { Value } from '@libsql/client/http';
+import type { Value } from '@libsql/client';
 import { turso_client } from './client';
 
 export async function create_or_update_session(
