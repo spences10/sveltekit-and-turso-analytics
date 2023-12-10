@@ -1,5 +1,5 @@
 <footer
-	class="footer footer-center p-10 bg-primary text-primary-content"
+	class="mt-10 footer footer-center bg-primary p-10 text-primary-content"
 >
 	<aside>
 		<svg
