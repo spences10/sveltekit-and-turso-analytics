@@ -14,6 +14,7 @@ export const update_page_visit = async (
 		'/session-end',
 		'/aggregated-analytics',
 		'/aggregated-locations',
+		'/aggregated-sessions',
 	];
 	if (
 		excluded_paths.some((path) => normalised_slug.startsWith(path))
@@ -69,10 +70,10 @@ export const update_page_visit = async (
 	) {
 		// Update existing record for today
 		sql = `UPDATE page_analytics SET 
-        pageviews = pageviews + 1, 
-        visits = visits + ${is_new_visit ? 1 : 0}, 
-        uniques = uniques + ${is_unique_visit ? 1 : 0} 
-        WHERE slug = ? AND date = ?`;
+				pageviews = pageviews + 1, 
+				visits = visits + ${is_new_visit ? 1 : 0}, 
+				uniques = uniques + ${is_unique_visit ? 1 : 0} 
+				WHERE slug = ? AND date = ?`;
 		await client.execute({
 			sql,
 			args: [normalised_slug, current_date],
