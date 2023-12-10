@@ -22,14 +22,14 @@ export const get_aggregated_locations = async (
 		group_by_mappings[aggregation_type] || 'city';
 
 	const sql = `
-    SELECT
-      ${group_by_clause},
-      COUNT(*) as session_count
-    FROM
-      session_geolocation
-    GROUP BY
-      ${group_by_clause};
-    `;
+		SELECT
+			${group_by_clause},
+			COUNT(*) as session_count
+		FROM
+			session_geolocation
+		GROUP BY
+			${group_by_clause};
+		`;
 
 	const result = await client.execute(sql);
 	return result.rows;
