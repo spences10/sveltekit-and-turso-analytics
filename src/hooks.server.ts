@@ -3,10 +3,8 @@ import {
 	handle_geolocation_data,
 	update_page_visit,
 } from '$lib/turso';
-import type { Config, Handle } from '@sveltejs/kit';
+import type { Handle } from '@sveltejs/kit';
 import { sequence } from '@sveltejs/kit/hooks';
-
-export const config: Config = { runtime: 'nodejs18.x' };
 
 export const user_session: Handle = async ({ event, resolve }) => {
 	try {

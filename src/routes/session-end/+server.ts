@@ -1,11 +1,5 @@
 import { calculate_metrics, turso_client } from '$lib/turso';
-import {
-	json,
-	type Config,
-	type RequestHandler,
-} from '@sveltejs/kit';
-
-export const config: Config = { runtime: 'nodejs18.x' };
+import { json, type RequestHandler } from '@sveltejs/kit';
 
 export const POST: RequestHandler = async ({ request }) => {
 	const data = await request.json();
@@ -28,6 +22,8 @@ export const POST: RequestHandler = async ({ request }) => {
 	// trigger metric calculations
 	calculate_metrics();
 
+	await client.sync();
+	
 	return json({
 		status: 200,
 		body: { message: 'Session data received' },
