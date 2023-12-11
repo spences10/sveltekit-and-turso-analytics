@@ -1,8 +1,6 @@
-import {
-	TURSO_DB_AUTH_TOKEN,
-	TURSO_DB_URL,
-} from '$env/static/private';
+import { env } from '$env/dynamic/private';
 import { createClient, type Client } from '@libsql/client/web';
+const { TURSO_DB_AUTH_TOKEN, TURSO_DB_URL } = env;
 
 let client_instance: Client | null = null;
 
