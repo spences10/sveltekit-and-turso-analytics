@@ -6,8 +6,8 @@ settings:
 
 devDependencies:
   '@libsql/client':
-    specifier: 0.5.1
-    version: 0.5.1
+    specifier: 0.5.2
+    version: 0.5.2
   '@playwright/test':
     specifier: ^1.40.1
     version: 1.40.1
@@ -605,10 +605,10 @@ packages:
       '@jridgewell/sourcemap-codec': 1.4.15
     dev: true
 
-  /@libsql/client@0.5.1:
-    resolution: {integrity: sha512-gzdQVPVi/64BRKP6sg+JvHTht95OHNjaldjhBrfB79H8hc/djUwWYuo9+C/+zCQ73IR+js2xTtUgNzn8bLZ/7A==}
+  /@libsql/client@0.5.2:
+    resolution: {integrity: sha512-aHnYjsqE4QWhb+HdJj2HtLw6QBt61veSu6IQgFO5rxzdY/rb69YAgYF0ZvpVoMn12B/t9U9U7H3ow/IADo4Yhg==}
     dependencies:
-      '@libsql/core': 0.5.1
+      '@libsql/core': 0.5.2
       '@libsql/hrana-client': 0.5.6
       js-base64: 3.7.5
       libsql: 0.3.2
@@ -618,8 +618,8 @@ packages:
       - utf-8-validate
     dev: true
 
-  /@libsql/core@0.5.1:
-    resolution: {integrity: sha512-oEkns102z5bLbGSQjZGAm4Ce+TwOuA8g7a86dRkGtEhOSIErw21yL0+t1oYrPtOXluDtTQ80cTvru8EoMMr78Q==}
+  /@libsql/core@0.5.2:
+    resolution: {integrity: sha512-sBo55JJXRiggymOy91MvI+lJ15U8BdWBHytAeszpebhhbrkuTfd+5jDoB3sSZ0dMH0NIPAVQEEQnQldAO+SDXg==}
     dependencies:
       js-base64: 3.7.5
     dev: true
