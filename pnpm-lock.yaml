@@ -36,8 +36,8 @@ importers:
         specifier: ^4.4.19
         version: 4.12.10(postcss@8.4.47)
       date-fns:
-        specifier: ^3.0.0
-        version: 3.6.0
+        specifier: ^4.0.0
+        version: 4.1.0
       eslint:
         specifier: ^9.0.0
         version: 9.11.1(jiti@1.21.6)
@@ -807,8 +807,8 @@ packages:
     resolution: {integrity: sha512-0R9ikRb668HB7QDxT1vkpuUBtqc53YyAwMwGeUFKRojY/NWKvdZ+9UYtRfGmhqNbRkTSVpMbmyhXipFFv2cb/A==}
     engines: {node: '>= 12'}
 
-  date-fns@3.6.0:
-    resolution: {integrity: sha512-fRHTG8g/Gif+kSh50gaGEdToemgfj74aRX3swtiouboip5JDLAyDE9F11nHMIcvOaXeOC6D7SpNhi7uFyB7Uww==}
+  date-fns@4.1.0:
+    resolution: {integrity: sha512-Ukq0owbQXxa/U3EGtsdVBkR1w7KOQ5gIBqdH2hkvknzZPYvBxb/aa6E8L7tmjFtkwZBu3UXBbjIgPo/Ez4xaNg==}
 
   debug@4.3.6:
     resolution: {integrity: sha512-O/09Bd4Z1fBrU4VzkhFqVgpPzaGbw6Sm9FEkBT1A/YBXQFGuuSxa1dN2nxgxS34JmKXqYx8CZAwEVoJFImUXIg==}
@@ -2677,7 +2677,7 @@ snapshots:
 
   data-uri-to-buffer@4.0.1: {}
 
-  date-fns@3.6.0: {}
+  date-fns@4.1.0: {}
 
   debug@4.3.6:
     dependencies:
